@@ -81,3 +81,7 @@ select contest_id,round(attendees*100/user_count,2) as percentage from
  u join 
  (select contest_id,count(distinct Register.user_id) as attendees from Register group by 1) r on true=true 
  order by percentage desc,contest_id asc
+
+--METHOD 2
+select contest_id , round((count(*)/(select count(*) from users))*100,2)  as percentage from register
+group by contest_id order by percentage desc ,contest_id; 
