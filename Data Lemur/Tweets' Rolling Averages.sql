@@ -20,3 +20,8 @@ order by t1.user_id,t1.tweet_date,t2.tweet_date )
 select user_id,tweet_date,round(sum(rolling_count)*1.00/count(rolling_date),2) as rolling_avg_3d
 from rolling_counts
 group by user_id,tweet_date
+
+/**Approach:
+1. Self joined tweets table with itself where user is same and the tweet date is before or on 2 days before it 
+2. Avergaed the output tweets
+**/
