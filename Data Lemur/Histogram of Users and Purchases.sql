@@ -26,9 +26,8 @@ transaction_date	user_id	purchase_count
 **/
 
 with d2d as (
-SELECT user_id,date(transaction_date) date,count(product_id) purchase_count
--- d2d transactions of the user + 
--- also handle edge case of transaction on same day diff times
+SELECT user_id,transaction_date date,count(product_id) purchase_count
+-- d2d transactions of the user 
 FROM user_transactions
 group by user_id,2
 )
@@ -42,4 +41,5 @@ from d2d
 )t 
 where rnk =1 
 -- filters all data except latest entry
-order by 1 desc, 2 asc
+order by 3,1
+
